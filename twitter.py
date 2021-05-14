@@ -16,18 +16,9 @@ user = api.me()
 search = '' #Insert the message you want to search for on Twitter.
 tweetNumbers = 2000
 
-in_reply_to_status_id = '' #Empty
-
 for tweet in tweepy.Cursor(api.search, search).items(tweetNumbers):
     try:
         tweet.retweet()
-
-        if(tweet.text == search):
-            print('Username: @' + tweet.user.screen_name)
-            api.update_status("@" + tweet.user.screen_name + "", in_reply_to_status_id-tweet.id) #Message you want to comment on the retweet post.
-            print("Tweet sent successfully.")
-            print('')
-
         print('Tweet successfully retweeted.')
         time.sleep(60)
 
