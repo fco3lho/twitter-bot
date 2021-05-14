@@ -1,32 +1,32 @@
 import tweepy
 import time
 
-# consumer_key = 'KoAA60byQNNscezgsP1DpvuKk'
-# consumer_secret = 'EgB9mhmfXu9Lmj9sTD5PHziQRENsmSqn1e5Eklc3gdrIySQiSv'
-# access_token = '1393204786875482113-q1yU4gF3AoR74alDu5ds33c5FHFtWM'
-# access_token_secret = 'WLkOgO8Y4cQ3kpvE7NPMaV3LXf349LwIaClOWGMs31AOq'
+consumer_key = '' #Insert the key obtained from your Twitter account.
+consumer_secret = '' #Insert the key obtained from your Twitter account.
+access_token = '' #Insert the key obtained from your Twitter account.
+access_token_secret = '' #Insert the key obtained from your Twitter account.
 
-authentication = tweepy.OAuthHandler('KoAA60byQNNscezgsP1DpvuKk', 'EgB9mhmfXu9Lmj9sTD5PHziQRENsmSqn1e5Eklc3gdrIySQiSv')
-authentication.set_access_token('1393204786875482113-q1yU4gF3AoR74alDu5ds33c5FHFtWM', 'WLkOgO8Y4cQ3kpvE7NPMaV3LXf349LwIaClOWGMs31AOq')
+authentication = tweepy.OAuthHandler(consumer_key, consumer_secret)
+authentication.set_access_token(access_token, access_token_secret)
 
 api = tweepy.API(authentication, wait_on_rate_limit = True, wait_on_rate_limit_notify = True)
 
 user = api.me()
 
-search = '#FechadoComBolsonaro'
+search = '' #Insert the message you want to search for on Twitter.
 tweetNumbers = 2000
 
-# in_reply_to_status_id = ''
+in_reply_to_status_id = '' #Empty
 
 for tweet in tweepy.Cursor(api.search, search).items(tweetNumbers):
     try:
         tweet.retweet()
 
-        # if(tweet.text == '#FechadoComBolsonaro'):
-        #     print('Nome do usuário: @' + tweet.user.screen_name)
-        #     api.update_status("@" + tweet.user.screen_name + " concordo plenamente com você, gado 🇧🇷 👍 👉", in_reply_to_status_id-tweet.id)
-        #     print("Tweet sent successfully.")
-        #     print('')
+        if(tweet.text == '#FechadoComBolsonaro'):
+            print('Username: @' + tweet.user.screen_name)
+            api.update_status("@" + tweet.user.screen_name + "", in_reply_to_status_id-tweet.id) #Message you want to comment on the retweet post.
+            print("Tweet sent successfully.")
+            print('')
 
         print('Tweet successfully retweeted.')
         time.sleep(60)
