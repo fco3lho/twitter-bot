@@ -22,7 +22,7 @@ for tweet in tweepy.Cursor(api.search, search).items(tweetNumbers):
     try:
         tweet.retweet()
 
-        if(tweet.text == '#FechadoComBolsonaro'):
+        if(tweet.text == search):
             print('Username: @' + tweet.user.screen_name)
             api.update_status("@" + tweet.user.screen_name + "", in_reply_to_status_id-tweet.id) #Message you want to comment on the retweet post.
             print("Tweet sent successfully.")
