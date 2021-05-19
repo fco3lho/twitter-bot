@@ -18,9 +18,14 @@ tweetNumbers = 2000
 
 for tweet in tweepy.Cursor(api.search, search).items(tweetNumbers):
     try:
-        tweet.retweet()
-        print('Tweet successfully retweeted.')
-        time.sleep(60)
+        if((tweet.text) == ''): #Between the quotes, enter the message you want to search for in the tweet to make a comment.
+            tweet.retweet()
+            print('Tweet successfully retweeted.')
+            print('Username: @' + tweet.user.screen_name)
+            api.update_status("@" + tweet.user.screen_name + "Type here what you want to comment on the tweet that was searched.", in_reply_to_status_id = tweet.id)
+            print("Tweet sent successfully.")
+            print('')
+            time.sleep(60)
 
     except tweepy.TweepError as e:
         print('Error: ', e.reason)
